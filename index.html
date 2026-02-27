@@ -18,10 +18,8 @@
         .animate-marquee { display: inline-block; animation: marquee 20s linear infinite; }
         @keyframes marquee { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
 
-        /* Access Denied Modal Background */
         #access-modal { background: rgba(0, 0, 0, 0.9); display: none; }
 
-        /* Profile Section Styling */
         #profile-section { display: none; background: #060b18; min-height: 100vh; width: 100%; position: absolute; top: 0; left: 0; z-index: 200; }
         .settings-card { background: #111a2d; border-radius: 20px; padding: 25px; border: 1px solid #1e293b; margin-bottom: 20px; }
         .input-box { background: #060b18; border: 1px solid #1e293b; border-radius: 10px; width: 100%; padding: 12px 15px; color: white; margin-top: 5px; outline: none; }
@@ -96,7 +94,7 @@
             <div class="side-btn bg-red-600"><i class="fas fa-play text-white text-xs"></i></div>
         </div>
 
-        <div class="fixed bottom-24 right-4 bg-cyan-400 p-3 rounded-2xl shadow-lg z-50 cursor-pointer shadow-cyan-500/50" onclick="checkAccess()">
+        <div class="fixed bottom-24 right-4 bg-cyan-400 p-3 rounded-2xl shadow-lg z-50 cursor-pointer shadow-cyan-500/50" onclick="checkAccess('support')">
             <i class="fas fa-comment-dots text-black text-xl"></i>
         </div>
 
@@ -140,16 +138,16 @@
 
         <div class="px-4 grid grid-cols-2 gap-4 mb-6">
             <div class="grid-card" onclick="goToRecharge()"><i class="fas fa-bolt text-yellow-400 text-xl"></i><span class="text-[10px] font-black uppercase">Recharge</span></div>
-            <div class="grid-card" onclick="checkAccess()"><i class="fas fa-hand-holding-usd text-green-400 text-xl"></i><span class="text-[10px] font-black uppercase">Withdraw</span></div>
-            <div class="grid-card" onclick="checkAccess()"><i class="fas fa-users text-blue-400 text-xl"></i><span class="text-[10px] font-black uppercase text-center">Invention<br>User</span></div>
-            <div class="grid-card" onclick="checkAccess()"><i class="fas fa-star text-cyan-400 text-xl"></i><span class="text-[10px] font-black uppercase">My Refer</span></div>
-            <div class="grid-card" onclick="checkAccess()"><i class="fas fa-shopping-cart text-purple-400 text-xl"></i><span class="text-[10px] font-black uppercase">Buy Plan</span></div>
-            <div class="grid-card" onclick="checkAccess()"><i class="fas fa-gift text-pink-400 text-xl"></i><span class="text-[10px] font-black uppercase">My Gift</span></div>
-            <div class="grid-card" onclick="checkAccess()"><i class="fas fa-sync text-orange-400 text-xl"></i><span class="text-[10px] font-black uppercase">Join Spin</span></div>
-            <div class="grid-card" onclick="checkAccess()"><i class="fas fa-chess-king text-indigo-400 text-xl"></i><span class="text-[10px] font-black uppercase text-center">Cash Back</span></div>
+            <div class="grid-card" onclick="checkAccess('wid1')"><i class="fas fa-hand-holding-usd text-green-400 text-xl"></i><span class="text-[10px] font-black uppercase">Withdraw</span></div>
+            <div class="grid-card" onclick="checkAccess('inter1')"><i class="fas fa-users text-blue-400 text-xl"></i><span class="text-[10px] font-black uppercase text-center">Invention<br>User</span></div>
+            <div class="grid-card" onclick="checkAccess('myrefer')"><i class="fas fa-star text-cyan-400 text-xl"></i><span class="text-[10px] font-black uppercase">My Refer</span></div>
+            <div class="grid-card" onclick="checkAccess('plan')"><i class="fas fa-shopping-cart text-purple-400 text-xl"></i><span class="text-[10px] font-black uppercase">Buy Plan</span></div>
+            <div class="grid-card" onclick="checkAccess('gift')"><i class="fas fa-gift text-pink-400 text-xl"></i><span class="text-[10px] font-black uppercase">My Gift</span></div>
+            <div class="grid-card" onclick="checkAccess('spin')"><i class="fas fa-sync text-orange-400 text-xl"></i><span class="text-[10px] font-black uppercase">Join Spin</span></div>
+            <div class="grid-card" onclick="checkAccess('cashback')"><i class="fas fa-chess-king text-indigo-400 text-xl"></i><span class="text-[10px] font-black uppercase text-center">Cash Back</span></div>
         </div>
 
-        <div class="px-4 mb-10" onclick="checkAccess()">
+        <div class="px-4 mb-10" onclick="checkAccess('jackpot')">
             <div class="jackpot-banner p-8 text-center shadow-xl">
                 <p class="text-xs font-bold uppercase mb-2">New Jackpot Program</p>
                 <h2 class="text-4xl font-black mb-4 uppercase">With 117,649$</h2>
@@ -207,7 +205,6 @@
             document.getElementById('main-content').style.display = 'block';
         }
 
-        // New function to handle Recharge navigation
         function goToRecharge() {
             const isLoggedIn = localStorage.getItem('isLoggedIn');
             if (isLoggedIn === 'true') {
@@ -217,12 +214,13 @@
             }
         }
 
-        function checkAccess() {
+        // Updated checkAccess to handle multiple pages
+        function checkAccess(page) {
             const isLoggedIn = localStorage.getItem('isLoggedIn');
             if (isLoggedIn !== 'true') {
                 openModal();
             } else {
-                alert('Success! Opening feature...');
+                if(page) window.location.href = page + '.html';
             }
         }
 
@@ -238,7 +236,7 @@
         let index = 0;
         setInterval(() => {
             index = (index + 1) % 2;
-            track.style.transform = `translateX(-${index * 100}%)`;
+            if(track) track.style.transform = `translateX(-${index * 100}%)`;
         }, 3000);
     </script>
 </body>

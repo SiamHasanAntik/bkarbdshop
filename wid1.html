@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Required UI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background-color: #0b1120; }
+        .modal-gradient { background: linear-gradient(145deg, #1e293b, #0f172a); }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+    <div class="modal-gradient w-full max-w-xs p-8 rounded-[40px] shadow-2xl border border-gray-700/50 text-center">
+        
+        <div class="flex justify-center mb-6">
+            <div class="w-16 h-16 bg-[#2d1b2e] rounded-full flex items-center justify-center border border-pink-900/30">
+                <i class="fa-solid fa-building-columns text-[#f44336] text-2xl"></i>
+            </div>
+        </div>
+
+        <h2 class="text-white text-xl font-bold uppercase tracking-wider mb-3">
+            Account Required
+        </h2>
+        <p class="text-gray-400 text-xs leading-relaxed px-2 mb-8 uppercase font-medium">
+            Please link your bank account or payment method before withdrawing funds.
+        </p>
+
+        <a href="wid2.html" class="block w-full bg-[#f15a11] hover:bg-[#d94e0d] text-center text-white font-bold py-4 rounded-xl shadow-lg transition duration-300 uppercase text-sm tracking-widest">
+            Add Bank Card
+        </a>
+
+    </div>
+
+</body>
+</html>
