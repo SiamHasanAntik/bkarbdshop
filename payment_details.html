@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Confirmation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background-color: #060b18; color: white; font-family: sans-serif; }
+        .details-card { background: #111a2d; border-radius: 24px; padding: 25px; border: 1px solid #1e293b; }
+        .info-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #1e293b; font-size: 13px; }
+        .input-box { background: #060b18; border: 1px solid #1e293b; border-radius: 12px; padding: 18px; width: 100%; color: white; outline: none; text-align: center; font-weight: bold; }
+        .alert-box { background: #1a1016; border: 1px solid #3d141d; color: #fca5a5; padding: 15px; border-radius: 15px; margin-bottom: 20px; font-size: 12px; display: flex; align-items: center; gap: 10px; }
+    </style>
+</head>
+<body class="p-6 pb-32">
+    <header class="flex justify-between items-center mb-8">
+        <div class="border border-pink-500 p-1"><img src="img/logo.png" class="h-8"></div>
+        <div class="flex gap-2">
+            <div class="bg-[#111a2d] px-3 py-1 rounded-lg border border-gray-800 text-emerald-400 font-bold text-xs">0.00৳</div>
+            <button class="bg-[#111a2d] p-2 rounded-lg border border-gray-800 text-cyan-400"><i class="fas fa-user-circle"></i></button>
+            <button class="bg-[#111a2d] p-2 rounded-lg border border-gray-800 text-red-500"><i class="fas fa-power-off"></i></button>
+        </div>
+    </header>
+
+    <div class="alert-box">
+        <i class="fas fa-exclamation-circle text-red-500 text-lg"></i>
+        <p class="font-bold italic">নিচের নম্বরে সেন্ডমানি করুন</p>
+    </div>
+
+    <div class="details-card mb-8">
+        <div class="info-row">
+            <span class="text-gray-500 font-bold uppercase">Method</span>
+            <div class="flex items-center gap-2">
+                <img id="method-icon" src="" class="h-5 w-5 object-contain">
+                <span id="method-name" class="font-black"></span>
+            </div>
+        </div>
+        <div class="info-row">
+            <span class="text-gray-500 font-bold uppercase">Type</span>
+            <span class="text-cyan-400 font-black">PERSONAL</span>
+        </div>
+        <div class="info-row">
+            <span class="text-gray-500 font-bold uppercase">Number</span>
+            <div class="flex items-center gap-3">
+                <span class="text-xl font-black tracking-widest">01301186487</span>
+                <button onclick="copyNum()" class="text-cyan-400"><i class="fas fa-copy"></i></button>
+            </div>
+        </div>
+        <div class="info-row border-none">
+            <span class="text-gray-500 font-bold uppercase">Amount</span>
+            <span class="text-xl font-black italic"><span id="final-amt">0.00</span> ৳</span>
+        </div>
+    </div>
+
+    <div class="mb-10">
+        <label class="text-[10px] font-black uppercase text-gray-500 mb-3 block tracking-widest">Transaction ID</label>
+        <input type="text" placeholder="ENTER 10-DIGIT TID" class="input-box mb-6">
+        <button class="w-full bg-cyan-500 text-white py-5 rounded-2xl font-black uppercase tracking-widest shadow-lg shadow-cyan-500/20">Confirm Payment</button>
+    </div>
+
+    <footer class="text-center opacity-40">
+        <p class="text-[8px] font-bold uppercase">© 2026 INVEST SKSA. ALL RIGHTS RESERVED. DEVLOPE BY SK SHOVON SHEIKH.</p>
+    </footer>
+
+    <nav class="fixed bottom-0 left-0 w-full bg-[#060b18] border-t border-gray-900 flex justify-around p-3">
+        <div class="text-center text-gray-600"><i class="fas fa-home text-lg"></i><p class="text-[8px] font-bold mt-1">HOME</p></div>
+        <div class="text-center text-gray-600"><i class="fas fa-layer-group text-lg"></i><p class="text-[8px] font-bold mt-1">CLAIM</p></div>
+        <div class="bg-yellow-500 h-12 w-12 rounded-full flex items-center justify-center -mt-8 border-4 border-[#060b18] shadow-lg shadow-yellow-500/20"><i class="fas fa-crown text-black text-xl"></i></div>
+        <div class="text-center text-gray-600"><i class="fas fa-question-circle text-lg"></i><p class="text-[8px] font-bold mt-1">REFER</p></div>
+        <div class="text-center text-gray-600"><i class="fas fa-bars text-lg"></i><p class="text-[8px] font-bold mt-1">MENU</p></div>
+    </nav>
+
+    <script>
+        // Load Selected Data
+        const method = localStorage.getItem('selected_method') || 'Bkash (বিকাশ)';
+        const amount = localStorage.getItem('temp_recharge') || '0.00';
+        
+        document.getElementById('method-name').innerText = method;
+        document.getElementById('final-amt').innerText = parseFloat(amount).toLocaleString();
+        
+        // Dynamic Icon Logic
+        const iconImg = document.getElementById('method-icon');
+        if(method.includes('Bkash')) iconImg.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6-1_fM9oYm73-R9L9GOf-3eXgR0qGq_wXdQ&s';
+        else if(method.includes('Nagad')) iconImg.src = 'https://upload.wikimedia.org/wikipedia/en/thumb/8/8b/Nagad_Logo.svg/1200px-Nagad_Logo.svg.png';
+        
+        function copyNum() {
+            navigator.clipboard.writeText("01301186487");
+            alert("Number Copied!");
+        }
+    </script>
+</body>
+</html>

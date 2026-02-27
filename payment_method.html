@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Payment Method</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background-color: #060b18; color: white; }
+        .method-card { background: #111a2d; border-radius: 20px; padding: 15px; display: flex; align-items: center; justify-content: space-between; border: 1px solid #1e293b; cursor: pointer; margin-bottom: 12px; }
+        .method-card.active { border-color: #0891b2; background: #0891b211; }
+        .radio-circle { width: 20px; height: 20px; border: 2px solid #334155; border-radius: 50%; }
+        .method-card.active .radio-circle { border-color: #0891b2; background: #0891b2; box-shadow: inset 0 0 0 4px #060b18; }
+    </style>
+</head>
+<body class="p-6">
+    <div class="text-center mb-10 mt-10">
+        <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">Order Total</p>
+        <h1 class="text-5xl font-black"><span id="display-amt">0.00</span> <span class="text-cyan-400 text-2xl">TK</span></h1>
+    </div>
+
+    <div class="bg-[#111a2d] rounded-[30px] p-6 border border-gray-800">
+        <p class="text-xs font-bold uppercase text-gray-400 mb-6 flex items-center gap-2">
+            <i class="fas fa-dot-circle text-[8px]"></i> Select Payment Method
+        </p>
+
+        <div class="method-card active" onclick="selectM(this, 'Bkash (বিকাশ)', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6-1_fM9oYm73-R9L9GOf-3eXgR0qGq_wXdQ&s')">
+            <div class="flex items-center gap-4">
+                <div class="bg-white p-1 rounded-lg"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6-1_fM9oYm73-R9L9GOf-3eXgR0qGq_wXdQ&s" class="h-8 w-8 object-contain"></div>
+                <span class="font-bold uppercase text-sm">BKASH (বিকাশ)</span>
+            </div>
+            <div class="radio-circle"></div>
+        </div>
+
+        <div class="method-card" onclick="selectM(this, 'Nagad (নগদ)', 'https://upload.wikimedia.org/wikipedia/en/thumb/8/8b/Nagad_Logo.svg/1200px-Nagad_Logo.svg.png')">
+            <div class="flex items-center gap-4">
+                <div class="bg-orange-500 p-1 rounded-lg"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8b/Nagad_Logo.svg/1200px-Nagad_Logo.svg.png" class="h-8 w-8 object-contain"></div>
+                <span class="font-bold uppercase text-sm">NAGAD (নগদ)</span>
+            </div>
+            <div class="radio-circle"></div>
+        </div>
+
+        <div class="method-card" onclick="selectM(this, 'Rocket (রকেট)', 'https://seeklogo.com/images/D/dutch-bangla-rocket-logo-B4D1CC458D-seeklogo.com.png')">
+            <div class="flex items-center gap-4">
+                <div class="bg-purple-800 p-1 rounded-lg"><img src="https://seeklogo.com/images/D/dutch-bangla-rocket-logo-B4D1CC458D-seeklogo.com.png" class="h-8 w-8 object-contain"></div>
+                <span class="font-bold uppercase text-sm">ROCKET (রকেট)</span>
+            </div>
+            <div class="radio-circle"></div>
+        </div>
+
+        <div class="method-card" onclick="selectM(this, 'Upay (উপায়)', 'https://mbaland.com/wp-content/uploads/2021/03/upay-logo.png')">
+            <div class="flex items-center gap-4">
+                <div class="bg-yellow-500 p-1 rounded-lg"><img src="https://mbaland.com/wp-content/uploads/2021/03/upay-logo.png" class="h-8 w-8 object-contain"></div>
+                <span class="font-bold uppercase text-sm">UPAY (উপায়)</span>
+            </div>
+            <div class="radio-circle"></div>
+        </div>
+
+        <button onclick="goToFinalPayment()" class="w-full bg-cyan-500 text-white py-5 rounded-2xl font-black uppercase tracking-widest mt-6 shadow-lg shadow-cyan-500/20">Go to Payment</button>
+    </div>
+
+    <script>
+        // ডিফল্ট ভ্যালু সেট করা
+        let selectedMethod = 'Bkash (বিকাশ)';
+        let selectedLogo = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6-1_fM9oYm73-R9L9GOf-3eXgR0qGq_wXdQ&s';
+
+        // লোকাল স্টোরেজ থেকে অ্যামাউন্ট আনা
+        document.getElementById('display-amt').innerText = localStorage.getItem('temp_recharge') || "0.00";
+
+        function selectM(el, name, logo) {
+            // আগের একটিভ ক্লাস রিমুভ করা
+            document.querySelectorAll('.method-card').forEach(c => c.classList.remove('active'));
+            // নতুন একটিভ ক্লাস যোগ করা
+            el.classList.add('active');
+            
+            // সিলেক্ট করা মেথড স্টোর করা
+            selectedMethod = name;
+            selectedLogo = logo;
+        }
+
+        function goToFinalPayment() {
+            // ডাটা সেভ করে পরবর্তী পেজে পাঠানো
+            localStorage.setItem('selected_method', selectedMethod);
+            localStorage.setItem('selected_logo', selectedLogo);
+            window.location.href = 'payment_details.html';
+        }
+    </script>
+</body>
+</html>

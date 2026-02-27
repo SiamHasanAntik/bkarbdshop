@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKSA - Register</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background-color: #060b18; color: white; font-family: sans-serif; }
+        .input-box { background: #111a2d; border: 1px solid #1e293b; border-radius: 12px; width: 100%; padding: 15px 20px; color: white; font-size: 14px; outline: none; }
+        .reg-btn { background: #10b981; color: white; width: 100%; padding: 18px; border-radius: 20px; font-weight: 900; text-transform: uppercase; cursor: pointer; }
+    </style>
+</head>
+<body class="p-6">
+
+    <header class="w-full flex justify-between items-center mb-8">
+        <div class="border border-pink-500 p-1">
+            <img src="img/639570688_1464413621734325_6013932138748489690_n.jpg" class="h-6">
+        </div>
+        <div class="flex gap-4">
+            <a href="signin.html" class="text-xs font-bold text-gray-400 uppercase">Sign In</a>
+            <a href="signup.html" class="bg-cyan-500 text-white px-3 py-1 rounded-lg font-bold text-xs uppercase">Sign Up</a>
+        </div>
+    </header>
+
+    <div class="flex flex-col items-center">
+        <div class="bg-emerald-900/10 p-5 rounded-[25px] border border-emerald-500/20 mb-6">
+            <i class="fas fa-user-plus text-emerald-500 text-4xl"></i>
+        </div>
+        <h1 class="text-3xl font-black uppercase mb-1 text-center">Create Account</h1>
+        <p class="text-gray-500 font-bold uppercase text-[10px] tracking-widest mb-10 text-center">Join our community today</p>
+    </div>
+
+    <div class="w-full max-w-sm mx-auto space-y-5">
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <label class="text-[10px] font-black uppercase text-gray-400 mb-2 block ml-1">First Name</label>
+                <input type="text" id="fname" placeholder="John" class="input-box">
+            </div>
+            <div>
+                <label class="text-[10px] font-black uppercase text-gray-400 mb-2 block ml-1">Last Name</label>
+                <input type="text" id="lname" placeholder="Doe" class="input-box">
+            </div>
+        </div>
+
+        <div>
+            <label class="text-[10px] font-black uppercase text-gray-400 mb-2 block ml-1">Email Address</label>
+            <input type="email" id="reg-email" placeholder="example@mail.com" class="input-box">
+        </div>
+
+        <div>
+            <label class="text-[10px] font-black uppercase text-gray-400 mb-2 block ml-1">Password</label>
+            <div class="relative">
+                <input type="password" id="reg-pass" placeholder="••••••••" class="input-box">
+                <i class="fas fa-eye absolute right-5 top-1/2 -translate-y-1/2 text-gray-600 cursor-pointer toggle-pass" data-target="reg-pass"></i>
+            </div>
+        </div>
+
+        <div>
+            <label class="text-[10px] font-black uppercase text-gray-400 mb-2 block ml-1">Repeat Password</label>
+            <div class="relative">
+                <input type="password" id="confirm-pass" placeholder="••••••••" class="input-box">
+                <i class="fas fa-eye absolute right-5 top-1/2 -translate-y-1/2 text-gray-600 cursor-pointer toggle-pass" data-target="confirm-pass"></i>
+            </div>
+        </div>
+
+        <div>
+            <label class="text-[10px] font-black uppercase text-gray-400 mb-2 block ml-1">Referral ID</label>
+            <div class="border-2 border-dashed border-emerald-500/50 rounded-xl p-4 text-center text-emerald-500 font-black text-lg">0000</div>
+        </div>
+
+        <button onclick="handleRegister()" class="reg-btn mt-4 shadow-lg shadow-emerald-500/20">Create Account</button>
+
+        <p class="text-center text-[10px] font-bold text-gray-500 uppercase mt-4">
+            Already have an account? <a href="signin.html" class="text-emerald-500 hover:underline">Login here</a>
+        </p>
+    </div>
+
+    <footer class="text-center px-4 mt-16 mb-10">
+        <p class="text-[9px] text-gray-500 font-bold mb-4 uppercase tracking-tighter">
+            © 2026 INVEST SKSA. ALL RIGHTS RESERVED. DEVELOPED BY SK SHOVON SHEIKH.
+        </p>
+        <div class="flex justify-center gap-3 text-[9px] text-gray-500 font-bold uppercase mb-2">
+            <span>Privacy Policy</span>
+            <span>•</span>
+            <span>Terms of Service</span>
+            <span>•</span>
+            <span>About Us</span>
+        </div>
+        <p class="text-[9px] text-gray-600 uppercase font-black">Developed by SK Shovon Sheikh</p>
+    </footer>
+
+    <script>
+        // পাসওয়ার্ড শো/হাইড লজিক (সব ফিল্ডের জন্য)
+        document.querySelectorAll('.toggle-pass').forEach(icon => {
+            icon.onclick = function() {
+                const targetId = this.getAttribute('data-target');
+                const input = document.getElementById(targetId);
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    this.classList.replace('fa-eye', 'fa-eye-slash');
+                } else {
+                    input.type = 'password';
+                    this.classList.replace('fa-eye-slash', 'fa-eye');
+                }
+            };
+        });
+
+        // রেজিস্ট্রেশন লজিক
+        function handleRegister() {
+            const fname = document.getElementById('fname').value;
+            const lname = document.getElementById('lname').value;
+            const email = document.getElementById('reg-email').value;
+            const pass = document.getElementById('reg-pass').value;
+            const confirmPass = document.getElementById('confirm-pass').value;
+
+            if (!fname || !lname || !email || !pass || !confirmPass) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            if (pass !== confirmPass) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            // ব্রাউজারে ডাটা সেভ করা
+            localStorage.setItem('user_email', email);
+            localStorage.setItem('user_pass', pass);
+            localStorage.setItem('user_name', fname + ' ' + lname);
+            localStorage.setItem('isLoggedIn', 'true');
+
+            alert('Registration Successful! Redirecting to Dashboard...');
+            window.location.href = 'index.html';
+        }
+    </script>
+
+</body>
+</html>

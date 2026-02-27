@@ -3,214 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bekarbdshop</title>
+    <title>SKSA - Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body { background-color: #060b18; color: white; font-family: sans-serif; overflow-x: hidden; }
-        
-        /* Grid Card Style */
-        .grid-card {
-            background: #111a2d;
-            border-bottom: 3px solid white;
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 20px 10px;
-            min-height: 100px;
-        }
-
-        /* Jackpot Banner */
-        .jackpot-banner {
-            background: linear-gradient(135deg, #0891b2 0%, #2563eb 100%);
-            border-radius: 24px;
-        }
-
-        /* Left Side Floating Buttons */
-        .side-btn {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
-            border: 2px solid #1e293b;
-        }
-
-        /* Bottom Nav Styling */
-        .bottom-nav { background: #060b18; border-top: 1px solid #1e293b; }
-        .vip-outer {
-            background: #060b18;
-            padding: 8px;
-            border-radius: 50%;
-            margin-top: -30px;
-        }
-        .vip-inner {
-            background: radial-gradient(circle, #facc15 0%, #a16207 100%);
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 20px rgba(250, 204, 21, 0.4);
-        }
-
-        /* Slide Animation */
-        .slider-track {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
+        .grid-card { background: #111a2d; border-bottom: 3px solid white; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 20px 10px; cursor: pointer; }
+        .jackpot-banner { background: linear-gradient(135deg, #0891b2 0%, #2563eb 100%); border-radius: 24px; }
+        .side-btn { width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; border: 2px solid #1e293b; }
+        .bottom-nav { background: #060b18; border-top: 1px solid #1e293b; position: fixed; bottom: 0; width: 100%; height: 65px; z-index: 50; }
+        .vip-inner { background: radial-gradient(circle, #facc15 0%, #a16207 100%); width: 55px; height: 55px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: -35px; border: 5px solid #060b18; }
+        .slider-track { display: flex; transition: transform 0.5s ease-in-out; }
         .slider-track img { width: 100%; flex-shrink: 0; }
+        .animate-marquee { display: inline-block; animation: marquee 20s linear infinite; }
+        @keyframes marquee { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
 
-        .animate-marquee {
-            display: inline-block;
-            animation: marquee 20s linear infinite;
-        }
-        @keyframes marquee {
-            from { transform: translateX(100%); }
-            to { transform: translateX(-100%); }
-        }
+        /* Access Denied Modal Background */
+        #access-modal { background: rgba(0, 0, 0, 0.9); display: none; }
+
+        /* Profile Section Styling */
+        #profile-section { display: none; background: #060b18; min-height: 100vh; width: 100%; position: absolute; top: 0; left: 0; z-index: 200; }
+        .settings-card { background: #111a2d; border-radius: 20px; padding: 25px; border: 1px solid #1e293b; margin-bottom: 20px; }
+        .input-box { background: #060b18; border: 1px solid #1e293b; border-radius: 10px; width: 100%; padding: 12px 15px; color: white; margin-top: 5px; outline: none; }
+        .header-btn { background: #111a2d; border: 1px solid #1e293b; padding: 6px 12px; border-radius: 8px; font-size: 11px; font-weight: bold; display: flex; align-items: center; gap: 6px; }
     </style>
 </head>
 <body class="relative">
 
-    <div class="fixed left-2 top-1/4 z-50 flex flex-col">
-        <div class="side-btn bg-orange-600"><i class="fas fa-wallet text-white text-xs"></i></div>
-        <div class="side-btn bg-blue-500"><i class="fas fa-box text-white text-xs"></i></div>
-        <div class="side-btn bg-red-600"><i class="fas fa-play text-white text-xs"></i></div>
-    </div>
-
-    <header class="p-3 flex justify-between items-center">
-        <div class="border border-pink-500 p-1">
-            <img src="img/639570688_1464413621734325_6013932138748489690_n.jpg" alt="Logo" class="h-8">
-        </div>
-        <div class="flex items-center gap-4">
-            <span class="text-xs font-bold text-gray-400">SIGN IN</span>
-            <button class="bg-cyan-500 text-white px-4 py-1.5 rounded-lg font-bold text-xs">SIGN UP</button>
-        </div>
-    </header>
-
-    <div class="px-3">
-        <div class="relative w-full rounded-2xl overflow-hidden border-2 border-pink-500 shadow-lg aspect-video">
-            <div id="slider-track" class="slider-track">
-                <img src="img/b.jpg" alt="B1">
-                <img src="img/639570688_1464413621734325_6013932138748489690_n.jpg" alt="B2">
-            </div>
-        </div>
-    </div>
-
-    <div class="bg-[#0b1426] my-3 py-1 px-4 overflow-hidden">
-        <p class="text-[10px] text-cyan-400 font-bold animate-marquee">
-            MEMBER 018*** RECHARGED 1,000? SUCCESS... • MEMBER 017*** WITHDRAW 500? SUCCESS...
-        </p>
-    </div>
-
-    <div class="px-4 grid grid-cols-2 gap-4 mb-6">
-        <div class="grid-card">
-            <i class="fas fa-bolt text-yellow-400 text-xl"></i>
-            <span class="text-[10px] font-black uppercase">Recharge</span>
-        </div>
-        <div class="grid-card">
-            <i class="fas fa-hand-holding-usd text-green-400 text-xl"></i>
-            <span class="text-[10px] font-black uppercase">Withdraw</span>
-        </div>
-        <div class="grid-card text-center">
-            <i class="fas fa-users text-blue-400 text-xl"></i>
-            <span class="text-[10px] font-black uppercase leading-tight">Invention<br>User</span>
-        </div>
-        <div class="grid-card">
-            <i class="fas fa-star text-cyan-400 text-xl"></i>
-            <span class="text-[10px] font-black uppercase">My Refer</span>
-        </div>
-        <div class="grid-card">
-            <i class="fas fa-shopping-cart text-purple-400 text-xl"></i>
-            <span class="text-[10px] font-black uppercase">Buy Plan</span>
-        </div>
-        <div class="grid-card">
-            <i class="fas fa-gift text-pink-400 text-xl"></i>
-            <span class="text-[10px] font-black uppercase">My Gift</span>
-        </div>
-        <div class="grid-card">
-            <i class="fas fa-sync text-orange-400 text-xl"></i>
-            <span class="text-[10px] font-black uppercase">Join Spin</span>
-        </div>
-        <div class="grid-card">
-            <i class="fas fa-chess-king text-indigo-400 text-xl"></i>
-            <span class="text-[10px] font-black uppercase">Cash Back</span>
-        </div>
-    </div>
-
-    <div class="px-4 mb-10">
-        <div class="jackpot-banner p-8 text-center shadow-xl">
-            <p class="text-xs font-bold tracking-widest uppercase mb-2">New Jackpot Program</p>
-            <h2 class="text-4xl font-black mb-4 uppercase">With 117,649$</h2>
-            <button class="bg-yellow-400 text-black px-8 py-2 rounded-xl font-black text-xs uppercase shadow-lg active:scale-95 transition">
-                Start Now
+    <div id="profile-section" class="p-6 pb-32">
+        <div class="flex items-center gap-4 mb-8">
+            <button onclick="closeProfile()" class="bg-[#111a2d] p-3 rounded-full border border-gray-800">
+                <i class="fas fa-arrow-left"></i>
             </button>
-        </div>
-    </div>
-
-    <footer class="text-center px-4 mb-32">
-        <p class="text-[9px] text-gray-500 font-bold mb-4 uppercase tracking-tighter">
-            © 2026 INVEST SKSA. ALL RIGHTS RESERVED. DEVELOPED BY SK SHOVON SHEIKH.
-        </p>
-        <div class="flex justify-center gap-3 text-[9px] text-gray-500 font-bold uppercase mb-2">
-            <span>Privacy Policy</span>
-            <span>•</span>
-            <span>Terms of Service</span>
-            <span>•</span>
-            <span>About Us</span>
-        </div>
-        <p class="text-[9px] text-gray-600 uppercase font-black">Developed by SK Shovon Sheikh</p>
-    </footer>
-
-    <div class="fixed bottom-24 right-4 bg-cyan-400 p-3 rounded-2xl shadow-lg z-50">
-        <i class="fas fa-comment-dots text-black text-xl"></i>
-    </div>
-
-    <nav class="fixed bottom-0 left-0 right-0 bottom-nav flex justify-around items-center h-16 z-50">
-        <div class="flex flex-col items-center text-cyan-400">
-            <i class="fas fa-home text-lg"></i>
-            <span class="text-[8px] font-bold mt-1">HOME</span>
-        </div>
-        <div class="flex flex-col items-center text-gray-500">
-            <i class="fas fa-layer-group text-lg"></i>
-            <span class="text-[8px] font-bold mt-1">CLAIM</span>
-        </div>
-        
-        <div class="vip-outer">
-            <div class="vip-inner">
-                <i class="fas fa-crown text-black text-xl"></i>
-                <span class="text-[8px] text-black font-black">VIP</span>
+            <div>
+                <h1 class="text-xl font-black uppercase">Account Settings</h1>
+                <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Manage your personal information</p>
             </div>
         </div>
 
-        <div class="flex flex-col items-center text-gray-500">
-            <i class="fas fa-question-circle text-lg"></i>
-            <span class="text-[8px] font-bold mt-1">REFER</span>
+        <div class="settings-card">
+            <h2 class="text-xs font-black uppercase text-cyan-400 mb-6 flex items-center gap-2">
+                <i class="fas fa-user-edit"></i> Edit Profile
+            </h2>
+            <div class="space-y-4">
+                <div>
+                    <label class="text-[10px] font-bold text-gray-500 uppercase">First Name</label>
+                    <input type="text" id="p-fname" class="input-box" value="User">
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold text-gray-500 uppercase">Last Name</label>
+                    <input type="text" id="p-lname" class="input-box" value="Name">
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold text-gray-500 uppercase">Email Address (Read Only)</label>
+                    <input type="text" id="p-email" class="input-box opacity-50" readonly>
+                </div>
+                <button class="w-full bg-cyan-500 text-white py-3 rounded-xl font-black uppercase text-xs mt-2">Update Information</button>
+            </div>
         </div>
-        <div class="flex flex-col items-center text-gray-500">
-            <i class="fas fa-bars text-lg"></i>
-            <span class="text-[8px] font-bold mt-1">MENU</span>
+
+        <div class="settings-card">
+            <h2 class="text-xs font-black uppercase text-yellow-500 mb-6 flex items-center gap-2">
+                <i class="fas fa-key"></i> Security
+            </h2>
+            <div class="space-y-4">
+                <input type="password" placeholder="Current Password" class="input-box">
+                <input type="password" placeholder="New Password" class="input-box">
+                <button class="w-full bg-[#1e293b] border border-gray-700 text-gray-300 py-3 rounded-xl font-black uppercase text-xs mt-2">Change Password</button>
+            </div>
         </div>
-    </nav>
+    </div>
+
+    <div id="main-content">
+        <div id="access-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-6">
+            <div class="bg-[#111a2d] w-full max-w-sm rounded-[30px] p-8 border border-gray-800 text-center relative shadow-2xl">
+                <div class="flex justify-center mb-6">
+                    <div class="bg-red-500/10 p-5 rounded-full border border-red-500/20">
+                        <i class="fas fa-lock text-red-500 text-4xl"></i>
+                    </div>
+                </div>
+                <h2 class="text-2xl font-black uppercase mb-2 tracking-tight">Access Denied</h2>
+                <p class="text-gray-400 text-xs font-bold mb-8 uppercase">Authentication Required.</p>
+                <a href="signin.html" class="block w-full bg-cyan-500 text-white py-4 rounded-2xl font-black uppercase text-sm mb-4 shadow-lg shadow-cyan-500/20">Login</a>
+                <a href="signup.html" class="block w-full bg-[#1e293b] text-gray-300 py-4 rounded-2xl font-black uppercase text-sm mb-6 border border-gray-700">Register</a>
+                <button onclick="closeModal()" class="text-gray-500 font-bold uppercase text-[10px] tracking-widest">Close</button>
+            </div>
+        </div>
+
+        <div class="fixed left-2 top-1/4 z-40 flex flex-col">
+            <div class="side-btn bg-orange-600"><i class="fas fa-wallet text-white text-xs"></i></div>
+            <div class="side-btn bg-blue-500"><i class="fas fa-box text-white text-xs"></i></div>
+            <div class="side-btn bg-red-600"><i class="fas fa-play text-white text-xs"></i></div>
+        </div>
+
+        <div class="fixed bottom-24 right-4 bg-cyan-400 p-3 rounded-2xl shadow-lg z-50 cursor-pointer shadow-cyan-500/50" onclick="checkAccess()">
+            <i class="fas fa-comment-dots text-black text-xl"></i>
+        </div>
+
+        <header class="p-3 flex justify-between items-center">
+            <div class="border border-pink-500 p-1">
+                <img src="img/639570688_1464413621734325_6013932138748489690_n.jpg" class="h-8">
+            </div>
+            
+            <div class="flex items-center gap-2">
+                <div id="logged-in-controls" class="hidden flex items-center gap-2">
+                    <div class="header-btn text-emerald-400">
+                        <i class="fas fa-wallet"></i> <span>0.00৳</span>
+                    </div>
+                    <button onclick="openProfile()" class="header-btn text-cyan-400">
+                        <i class="fas fa-user-circle"></i> Profile
+                    </button>
+                    <button onclick="logout()" class="header-btn text-red-500 border-red-900/50">
+                        <i class="fas fa-power-off"></i> Logout
+                    </button>
+                </div>
+
+                <div id="logged-out-controls" class="flex items-center gap-4">
+                    <a href="signin.html" class="text-xs font-bold text-gray-400 uppercase">Sign In</a>
+                    <a href="signup.html" class="bg-cyan-500 text-white px-4 py-1.5 rounded-lg font-bold text-xs uppercase">Sign Up</a>
+                </div>
+            </div>
+        </header>
+
+        <div class="px-3">
+            <div class="relative w-full rounded-2xl overflow-hidden border-2 border-pink-500 aspect-video">
+                <div id="slider-track" class="slider-track">
+                    <img src="img/b.jpg">
+                    <img src="img/639570688_1464413621734325_6013932138748489690_n.jpg">
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-[#0b1426] my-3 py-1 px-4 overflow-hidden">
+            <p class="text-[10px] text-cyan-400 font-bold animate-marquee uppercase">Member 018*** Recharged 1,000 success... Member 017*** Withdraw 500 success...</p>
+        </div>
+
+        <div class="px-4 grid grid-cols-2 gap-4 mb-6">
+            <div class="grid-card" onclick="goToRecharge()"><i class="fas fa-bolt text-yellow-400 text-xl"></i><span class="text-[10px] font-black uppercase">Recharge</span></div>
+            <div class="grid-card" onclick="checkAccess()"><i class="fas fa-hand-holding-usd text-green-400 text-xl"></i><span class="text-[10px] font-black uppercase">Withdraw</span></div>
+            <div class="grid-card" onclick="checkAccess()"><i class="fas fa-users text-blue-400 text-xl"></i><span class="text-[10px] font-black uppercase text-center">Invention<br>User</span></div>
+            <div class="grid-card" onclick="checkAccess()"><i class="fas fa-star text-cyan-400 text-xl"></i><span class="text-[10px] font-black uppercase">My Refer</span></div>
+            <div class="grid-card" onclick="checkAccess()"><i class="fas fa-shopping-cart text-purple-400 text-xl"></i><span class="text-[10px] font-black uppercase">Buy Plan</span></div>
+            <div class="grid-card" onclick="checkAccess()"><i class="fas fa-gift text-pink-400 text-xl"></i><span class="text-[10px] font-black uppercase">My Gift</span></div>
+            <div class="grid-card" onclick="checkAccess()"><i class="fas fa-sync text-orange-400 text-xl"></i><span class="text-[10px] font-black uppercase">Join Spin</span></div>
+            <div class="grid-card" onclick="checkAccess()"><i class="fas fa-chess-king text-indigo-400 text-xl"></i><span class="text-[10px] font-black uppercase text-center">Cash Back</span></div>
+        </div>
+
+        <div class="px-4 mb-10" onclick="checkAccess()">
+            <div class="jackpot-banner p-8 text-center shadow-xl">
+                <p class="text-xs font-bold uppercase mb-2">New Jackpot Program</p>
+                <h2 class="text-4xl font-black mb-4 uppercase">With 117,649$</h2>
+                <button class="bg-yellow-400 text-black px-8 py-2 rounded-xl font-black text-xs uppercase shadow-lg">Start Now</button>
+            </div>
+        </div>
+
+        <footer class="text-center px-4 pb-32">
+            <p class="text-[9px] text-gray-500 font-bold mb-4 uppercase tracking-tighter">© 2026 INVEST SKSA. ALL RIGHTS RESERVED. DEVELOPED BY SK SHOVON SHEIKH.</p>
+            <div class="flex justify-center gap-3 text-[9px] text-gray-500 font-bold uppercase mb-2">
+                <span>Privacy Policy</span>
+                <span>•</span>
+                <span>Terms of Service</span>
+                <span>•</span>
+                <span>About Us</span>
+            </div>
+            <p class="text-[9px] text-gray-600 uppercase font-black">Developed by SK Shovon Sheikh</p>
+        </footer>
+
+        <nav class="bottom-nav flex justify-around items-center">
+            <div onclick="closeProfile()" class="flex flex-col items-center text-cyan-400 cursor-pointer"><i class="fas fa-home text-lg"></i><span class="text-[8px] font-bold mt-1 uppercase">Home</span></div>
+            <div class="flex flex-col items-center text-gray-500"><i class="fas fa-layer-group text-lg"></i><span class="text-[8px] font-bold mt-1 uppercase">Claim</span></div>
+            <div class="vip-inner"><i class="fas fa-crown text-black text-xl"></i><span class="text-[8px] text-black font-black uppercase">VIP</span></div>
+            <div class="flex flex-col items-center text-gray-500"><i class="fas fa-question-circle text-lg"></i><span class="text-[8px] font-bold mt-1 uppercase">Refer</span></div>
+            <div onclick="openProfile()" class="flex flex-col items-center text-gray-500 cursor-pointer"><i class="fas fa-bars text-lg"></i><span class="text-[8px] font-bold mt-1 uppercase">Menu</span></div>
+        </nav>
+    </div>
 
     <script>
+        window.onload = function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const userEmail = localStorage.getItem('user_email');
+            const userName = localStorage.getItem('user_name');
+            
+            if (isLoggedIn === 'true') {
+                document.getElementById('logged-in-controls').classList.remove('hidden');
+                document.getElementById('logged-out-controls').classList.add('hidden');
+                document.getElementById('p-email').value = userEmail || "";
+                
+                if(userName) {
+                    const names = userName.split(' ');
+                    document.getElementById('p-fname').value = names[0] || "";
+                    document.getElementById('p-lname').value = names[1] || "";
+                }
+            }
+        };
+
+        function openProfile() {
+            document.getElementById('profile-section').style.display = 'block';
+            document.getElementById('main-content').style.display = 'none';
+        }
+
+        function closeProfile() {
+            document.getElementById('profile-section').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+        }
+
+        // New function to handle Recharge navigation
+        function goToRecharge() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (isLoggedIn === 'true') {
+                window.location.href = 'recharge.html';
+            } else {
+                openModal();
+            }
+        }
+
+        function checkAccess() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (isLoggedIn !== 'true') {
+                openModal();
+            } else {
+                alert('Success! Opening feature...');
+            }
+        }
+
+        function openModal() { document.getElementById('access-modal').style.display = 'flex'; }
+        function closeModal() { document.getElementById('access-modal').style.display = 'none'; }
+
+        function logout() {
+            localStorage.setItem('isLoggedIn', 'false');
+            location.reload();
+        }
+
         const track = document.getElementById('slider-track');
         let index = 0;
-        const totalImages = track.children.length;
-
         setInterval(() => {
-            index++;
-            if (index >= totalImages) index = 0;
+            index = (index + 1) % 2;
             track.style.transform = `translateX(-${index * 100}%)`;
-        }, 1500); 
+        }, 3000);
     </script>
 </body>
 </html>

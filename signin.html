@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKSA - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background-color: #060b18; color: white; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; min-height: screen; padding: 24px; }
+        .input-box { background: #111a2d; border: 1px solid #1e293b; border-radius: 15px; width: 100%; padding: 18px 20px 18px 50px; color: white; font-size: 14px; outline: none; }
+        .input-icon { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: #0ea5e9; }
+        .login-btn { background: #10b981; color: white; width: 100%; padding: 18px; border-radius: 20px; font-weight: 900; text-transform: uppercase; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <header class="w-full flex justify-between items-center mb-10">
+        <div class="border border-pink-500 p-1"><img src="img/logo.jpg" class="h-6" onerror="this.src='https://via.placeholder.com/50'"></div>
+        <div class="flex gap-4"><a href="signin.html" class="text-xs font-bold text-gray-400">SIGN IN</a><a href="signup.html" class="bg-cyan-500 text-white px-3 py-1 rounded-lg font-bold text-xs">SIGN UP</a></div>
+    </header>
+
+    <div class="bg-cyan-900/10 p-6 rounded-[30px] border border-cyan-500/20 mb-6 mt-10">
+        <i class="fas fa-shield-alt text-emerald-500 text-5xl"></i>
+    </div>
+    <h1 class="text-3xl font-black uppercase mb-1">Welcome Back</h1>
+    <p class="text-gray-500 font-bold uppercase text-[10px] tracking-widest mb-10 text-center">Login to access your assets</p>
+
+    <div class="w-full max-w-sm space-y-6">
+        <div class="relative">
+            <i class="fas fa-envelope input-icon"></i>
+            <input type="email" id="email" placeholder="ENTER YOUR EMAIL" class="input-box">
+        </div>
+        <div class="relative">
+            <i class="fas fa-lock input-icon"></i>
+            <input type="password" id="pass" placeholder="••••••••" class="input-box">
+            <i class="fas fa-eye absolute right-5 top-1/2 -translate-y-1/2 text-gray-600 cursor-pointer" id="togglePass"></i>
+        </div>
+        <button onclick="loginUser()" class="login-btn">Login Account</button>
+        <p class="text-center text-[10px] font-bold text-gray-500 uppercase mt-4">New User? <a href="signup.html" class="text-emerald-500">Create Account</a></p>
+    </div>
+
+    <script>
+        const passField = document.getElementById('pass');
+        const toggleBtn = document.getElementById('togglePass');
+
+        toggleBtn.onclick = () => {
+            const type = passField.type === 'password' ? 'text' : 'password';
+            passField.type = type;
+            toggleBtn.classList.toggle('fa-eye-slash');
+        };
+
+        function loginUser() {
+            const email = document.getElementById('email').value;
+            const pass = passField.value;
+            const sEmail = localStorage.getItem('user_email');
+            const sPass = localStorage.getItem('user_pass');
+
+            if (email === sEmail && pass === sPass && email !== null) {
+                localStorage.setItem('isLoggedIn', 'true');
+                window.location.href = 'index.html';
+            } else {
+                alert('Wrong credentials! Did you register?');
+            }
+        }
+    </script>
+</body>
+</html>
